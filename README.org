@@ -1,4 +1,4 @@
-#+title: PkGetSet Readme
+#+title: pkgetset: A Persistent Keyed Container Convenience Library
 
 A persistent keyed data structure library focusing on simple extensible interface.
 
