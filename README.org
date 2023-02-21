@@ -1,0 +1,89 @@
+#+title: PkGetSet Readme
+
+A persistent keyed data structure library focusing on simple extensible interface.
+
+Built on top of sycamore, this provides an ergonomic way to use persistent data structures.
+
+* Example
+A simple example: get by key
+#+begin_src lisp
+  (let ((data (pk.sym :a 1
+                      :b 2)))
+    (getk data :a)) ;; => 1
+#+end_src
+
+Then set by key
+#+begin_src lisp
+  (let ((persistent (pk.sym :a 1
+                            :b 2)))
+    (setk persistent :c 3)) ; => (pk.sym :a 1 :b 2 :c 3)
+  ;; persistent is still (pk.sym :a 1 :b 2)
+#+end_src
+
+Nested data too
+#+begin_src lisp
+  (let ((data (pk.sym :a 1
+                      :b (pk.gen "ba" 0))))
+    (getk* data '(:b "ba"))) ; => 0
+#+end_src
+
+Or something more complicated.
+#+begin_src lisp
+  (ewith-keyed (json->pk.gen "{\"data\":{\"testing\":{\"rows\":[15,24,96]}},\"code\":100}")
+      ("data" ("testing" ("rows" (1 second-testing-row)))
+       "code" code)
+    (list second-testing-row code)) ; => '(24 100)
+#+end_src
+
+
+* Naming scheme
+
+Most functions are named off the base functions:
+- getk
+- setk
+- modk
+
+The modifiers are:
+- "*" :: Takes a path of keys instead of a single key
+- "?" :: Tests if key exists
+- "!" :: Update in place.  Does not change original persistent container.
+- "e" :: Error when key doesn't exist.
+
+
+* Container classes
+** Built-in
+
+The containers are:
+- pk.gen :: Keys can be symbols, strings or numbers.  Useful when converting from JSON.
+- pk.sym :: Keys are be symbols.
+- pk.str :: Keys are be strings.
+- pvec :: Persistent vector.  Setk functions also allow :start :end and (:insert n) as keys.
+
+
+** Convenience
+
+Read only access is implemented to work with getk for
+- array
+- cons
+- hash-table
+- vector
+
+
+* Diffs
+
+~diff-by-keys~ and ~diff-by-keys-find-deleted~ returns a pk.gen that can be inspected, or applied with ~apply-diff~.  In a multi-threaded environment where two changes occur simultaneously, ~diffs-in-conflict-p~ can check if one needs to be rejected.
+
+
+* Testing
+The system uses parachute as the testing framework.  There are many tests which also serve as examples of use.
+
+#+begin_src lisp
+  (asdf:load-system 'pkgetset)
+  (asdf:test-system 'pkgetset)
+  (asdf:load-system 'pkgetset.shasht)
+  (asdf:test-system 'pkgetset.shasht)
+#+end_src
+
+
+* Future
+- Validation needs to be moved over into a separate system from my personal projects.

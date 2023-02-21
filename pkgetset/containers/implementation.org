@@ -1,0 +1,16 @@
+#+title: Implementation
+
+* getk
+** getk                                                            :required:
+** fold-keyed                                                      :required:
+** keyedp                                                          :required:
+** lengthk                                                         :optional:
+** keyed-keys->list                                                :optional:
+** keyed-values->list                                              :optional:
+** keyed-keys->vector                                              :optional:
+** keyed-values->vector                                            :optional:
+* setk
+** settable-keyed-p                                                 :required:
+** settable-keyed->empty                                           :required:
+** setk                                                            :required:
+** remk                                                            :required:
