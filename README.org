@@ -2,6 +2,12 @@
 
 A persistent keyed data structure library focusing on simple extensible interface.
 
+After reading "Data-Oriented Programming" by Yehonathan Sharvit, I thought, I need a shared persistent data library to apply the ideas in his book.  Along with shared persistent data structures, I'd also need a way to generate and apply diffs.
+
+The ~pkgetset~ system contains getk, setk, ergonomic helpers to go with those functions, a few basic containers, and some methods so that getk can work with lists, hash tables and vectors.
+
+The ~pkgetset.sycamore~ system has persistent data structures built using =sycamore=.
+
 Built on top of sycamore, this provides an ergonomic way to use persistent data structures.
 
 * Example
@@ -96,4 +102,6 @@ The system uses parachute as the testing framework.  There are many tests which 
 
 * Future
 - pdict and mutable-dict need tests
+- diff needs to return pdicts for nested containers
+- ~pkgetset.sycamore.shasht~ helpers need configurable parameters to control serialization
 - Validation needs to be moved over into a separate system from my personal projects.
