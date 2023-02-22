@@ -52,7 +52,11 @@ The modifiers are:
 
 * Container classes
 ** Built-in
+The containers are:
+- pdict :: A naive hash-table based container that copies on set.
 
+
+** pkgetset.sycamore
 The containers are:
 - pk.gen :: Keys can be symbols, strings or numbers.  Useful when converting from JSON.
 - pk.sym :: Keys are be symbols.
@@ -80,8 +84,12 @@ The system uses parachute as the testing framework.  There are many tests which 
 #+begin_src lisp
   (asdf:load-system 'pkgetset)
   (asdf:test-system 'pkgetset)
-  (asdf:load-system 'pkgetset.shasht)
-  (asdf:test-system 'pkgetset.shasht)
+
+  (asdf:load-system 'pkgetset.sycamore)
+  (asdf:test-system 'pkgetset.sycamore)
+
+  (asdf:load-system 'pkgetset.sycamore.shasht)
+  (asdf:test-system 'pkgetset.sycamore.shasht)
 #+end_src
 
 

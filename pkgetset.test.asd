@@ -3,7 +3,7 @@
   :version "0.0.1"
 
   :class :package-inferred-system
-  :pathname "pkgetset.test"
+  :pathname "tests/pkgetset.test"
 
   :depends-on ("parachute"
                "pkgetset"

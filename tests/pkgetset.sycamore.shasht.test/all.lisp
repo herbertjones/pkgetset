@@ -1,14 +1,14 @@
-(uiop:define-package #:pkgetset.shasht.test
-  (:nicknames #:pkgetset.shasht.test/all)
+(uiop:define-package #:pkgetset.sycamore.shasht.test
+  (:nicknames #:pkgetset.sycamore.shasht.test/all)
   (:use)
   (:mix #:parachute
         #:pkgetset
         #:pkgetset.sycamore
-        #:pkgetset.shasht
+        #:pkgetset.sycamore.shasht
         #:shasht
         #:arrow-macros
         #:cl))
-(cl:in-package #:pkgetset.shasht.test)
+(cl:in-package #:pkgetset.sycamore.shasht.test)
 (named-readtables:in-readtable :interpol-syntax)
 
 (define-test "json->pk.str"

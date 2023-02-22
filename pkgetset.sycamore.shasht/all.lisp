@@ -1,5 +1,5 @@
-(uiop:define-package #:pkgetset.shasht
-  (:nicknames #:pkgetset.shasht/all)
+(uiop:define-package #:pkgetset.sycamore.shasht
+  (:nicknames #:pkgetset.sycamore.shasht/all)
   (:use #:cl
         #:pkgetset
         #:pkgetset.sycamore)
@@ -19,7 +19,7 @@
   (:export #:json->pk.gen
            #:json->pk.str
            #:json->pk.sym))
-(in-package #:pkgetset.shasht/all)
+(in-package #:pkgetset.sycamore.shasht/all)
 
 (-> json->pk.gen (string) pk.gen)
 (defun json->pk.gen (json-str)

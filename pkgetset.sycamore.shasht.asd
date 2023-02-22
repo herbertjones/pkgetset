@@ -1,9 +1,9 @@
-(defsystem "pkgetset.shasht"
+(defsystem "pkgetset.sycamore.shasht"
   :name "JSON functionality for pkgetset using Shasht"
   :version "0.0.1"
 
   :class :package-inferred-system
-  :pathname "pkgetset.shasht"
+  :pathname "pkgetset.sycamore.shasht"
 
   :depends-on ("shasht"
                "pkgetset"
@@ -12,6 +12,6 @@
                "str"
                "sycamore"
 
-               "pkgetset.shasht/all")
+               "pkgetset.sycamore.shasht/all")
 
-  :in-order-to ((test-op (test-op :pkgetset.shasht.test))))
+  :in-order-to ((test-op (test-op :pkgetset.sycamore.shasht.test))))

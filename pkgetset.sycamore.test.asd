@@ -3,7 +3,7 @@
   :version "0.0.1"
 
   :class :package-inferred-system
-  :pathname "pkgetset.sycamore.test"
+  :pathname "tests/pkgetset.sycamore.test"
 
   :depends-on ("parachute"
                "pkgetset"
