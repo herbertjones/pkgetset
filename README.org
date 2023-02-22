@@ -53,6 +53,7 @@ The modifiers are:
 * Container classes
 ** Built-in
 The containers are:
+- mutable-dict :: A hash-table based container that allows mutation until finalized as a pdict.
 - pdict :: A naive hash-table based container that copies on set.
 
 
