@@ -4,11 +4,11 @@
 (cl:in-package #:pkgetset.test/set-by-key)
 
 (defun test-obj-1 ()
-  (pk.sym :a (pk.sym :aa :aa-value
-                     :ab :ab-value)
-          :b 1
-          :n (pk.sym :n1 10
-                     :n2 200)))
+  (pdict :a (pdict :aa :aa-value
+                   :ab :ab-value)
+         :b 1
+         :n (pdict :n1 10
+                   :n2 200)))
 
 (define-test "setk!"
   (let ((obj (test-obj-1)))
@@ -45,7 +45,7 @@
 
 (define-test "emodk*"
   (is = 11 (getk* (emodk* (test-obj-1) '(:n :n1) #'1+)
-                 '(:n :n1)))
+                  '(:n :n1)))
   (fail (emodk* (test-obj-1) '(:n :n3) #'1+)))
 
 (define-test "modk!"
@@ -94,6 +94,6 @@
     (is eq nil (getk* obj '(:a :aa)))))
 
 (define-test "keyed-merge"
-  (true (keyeds-equal-p (keyed-merge (pk.sym :a 1 :b 2)
-                                     (pk.sym :b 3 :c 4))
-                        (pk.sym :a 1 :b 2 :c 4))))
+  (true (keyeds-equal-p (keyed-merge (pdict :a 1 :b 2)
+                                     (pdict :b 3 :c 4))
+                        (pdict :a 1 :b 2 :c 4))))

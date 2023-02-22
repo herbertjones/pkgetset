@@ -1,7 +1,10 @@
-(uiop:define-package #:pkgetset.test/containers/pk.sym
+(uiop:define-package #:pkgetset.sycamore.test/containers/pk.sym
   (:use)
-  (:mix #:parachute #:pkgetset #:cl))
-(cl:in-package #:pkgetset.test/containers/pk.sym)
+  (:mix #:parachute
+        #:pkgetset
+        #:pkgetset.sycamore
+        #:cl))
+(cl:in-package #:pkgetset.sycamore.test/containers/pk.sym)
 
 (defun test-pk.sym-1 ()
   (pk.sym :nested (pk.sym :a :a

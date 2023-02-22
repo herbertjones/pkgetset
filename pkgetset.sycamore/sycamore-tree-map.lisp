@@ -1,4 +1,4 @@
-(uiop:define-package #:pkgetset/containers/sycamore-tree-map
+(uiop:define-package #:pkgetset.sycamore/sycamore-tree-map
   (:use)
   (:mix #:pkgetset/interfaces
         #:pkgetset/get-by-key
@@ -27,7 +27,7 @@
            #:wrapped-key-tree-map-add-from-alist
            #:wrapped-key-tree-map-add-from-pairs)
   (:documentation "Incomplete container for extension by containers that wrap a sycamore tree-map"))
-(cl:in-package #:pkgetset/containers/sycamore-tree-map)
+(cl:in-package #:pkgetset.sycamore/sycamore-tree-map)
 
 (defstruct wrapped-tree-map
   "A persistent data structure that wraps sycamore-tree-map."

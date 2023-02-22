@@ -1,6 +1,6 @@
 (uiop:define-package #:pkgetset/diff
   (:use #:cl
-        #:pkgetset/containers/pk.gen
+        #:pkgetset/containers/pdict
         #:pkgetset/interfaces
         #:pkgetset/get-by-key)
   (:import-from #:serapeum
@@ -12,8 +12,8 @@
            #:keyeds-equal-p))
 (in-package #:pkgetset/diff)
 
-(declaim (type pk.gen *empty-object*))
-(defparameter *empty-object* (empty-pk.gen))
+(declaim (type pdict *empty-object*))
+(defparameter *empty-object* (pdict))
 
 (defun diff-getk? (keyed key)
   "(package internal)  Version of getk? for diff-getk."
@@ -40,15 +40,15 @@ Example:
                         ,@body)
                       ,(getf arg-plist :initial))))
 
-(-> reduce-keys-union ((-> (pk.gen t) pk.gen)
-                       pk.gen
+(-> reduce-keys-union ((-> (pdict t) pdict)
+                       pdict
                        keyed
                        keyed)
   t)
 (defun reduce-keys-union (f initial-value keyed-a keyed-b)
   "(package internal)  Iterate over the union of the keys of two keyed containers.
 
-INITIAL-VALUE 
+INITIAL-VALUE
     The initial value to pass to F.
 
 F
@@ -83,7 +83,7 @@ Example:
                   (pk.sym :a 1
                           :b 2
                           :c 3))
-    => (pk.sym :c 3)
+    => (dict :c 3)
 
 Descends through nested keyed containers, looking for changes.  Nodes of
 returned keyed object are the changes or new entries.  Use diffs-in-conflict-p

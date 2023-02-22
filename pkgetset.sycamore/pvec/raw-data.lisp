@@ -1,4 +1,4 @@
-(uiop:define-package #:pkgetset/containers/pvec/raw-data
+(uiop:define-package #:pkgetset.sycamore/pvec/raw-data
   (:use #:cl)
   (:import-from #:serapeum
                 #:->)
@@ -13,7 +13,7 @@
    #:raw-data-id
    #:raw-data-value)
   (:documentation "Internal data of pvec and associated functions"))
-(cl:in-package #:pkgetset/containers/pvec/raw-data)
+(cl:in-package #:pkgetset.sycamore/pvec/raw-data)
 
 (defstruct raw-data
   "Data used inside of the tree-set of the pvec struct.

@@ -1,9 +1,9 @@
-(uiop:define-package #:pkgetset/containers/pvec/get
+(uiop:define-package #:pkgetset.sycamore/pvec/get
   (:use)
   (:mix #:pkgetset/get-by-key
         #:pkgetset/interfaces
-        #:pkgetset/containers/pvec/pvec
-        #:pkgetset/containers/pvec/raw-data
+        #:pkgetset.sycamore/pvec/pvec
+        #:pkgetset.sycamore/pvec/raw-data
         #:cl)
   (:import-from #:alexandria-2
                 #:iota)
@@ -13,7 +13,7 @@
                 #:fold-tree-set)
   (:export)
   (:documentation "Implementation of pkgetset/get-by-key generics for pvec"))
-(cl:in-package #:pkgetset/containers/pvec/get)
+(cl:in-package #:pkgetset.sycamore/pvec/get)
 
 (defmethod keyedp ((keyed pvec))
   (declare (ignore keyed))

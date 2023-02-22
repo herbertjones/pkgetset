@@ -7,6 +7,7 @@
 
   :depends-on ("shasht"
                "pkgetset"
+               "pkgetset.sycamore"
                "serapeum"
                "str"
                "sycamore"

@@ -1,8 +1,8 @@
-(uiop:define-package #:pkgetset/containers/pk.sym
+(uiop:define-package #:pkgetset.sycamore/pk.sym
   (:use #:cl
         #:pkgetset/interfaces
         #:pkgetset/get-by-key
-        #:pkgetset/containers/sycamore-tree-map)
+        #:pkgetset.sycamore/sycamore-tree-map)
   (:import-from #:sycamore
                 #:tree-map
                 #:map-tree-map
@@ -22,7 +22,7 @@
            #:alist->pk.sym
            #:pk.sym)
   (:documentation "pk.sym symbol keyed persistent structure with getk and setk implementation"))
-(cl:in-package #:pkgetset/containers/pk.sym)
+(cl:in-package #:pkgetset.sycamore/pk.sym)
 
 (-> compare-by-symbol (symbol symbol) (member -1 1 0))
 (defun compare-by-symbol (a b)

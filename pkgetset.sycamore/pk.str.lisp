@@ -1,8 +1,8 @@
-(uiop:define-package #:pkgetset/containers/pk.str
+(uiop:define-package #:pkgetset.sycamore/pk.str
   (:use #:cl
         #:pkgetset/interfaces
         #:pkgetset/get-by-key
-        #:pkgetset/containers/sycamore-tree-map)
+        #:pkgetset.sycamore/sycamore-tree-map)
   (:import-from #:sycamore
                 #:tree-map
                 #:map-tree-map
@@ -23,7 +23,7 @@
            #:alist->pk.str
            #:pk.str)
   (:documentation "pk.str string keyed persistent structure with getk and setk implementation"))
-(in-package #:pkgetset/containers/pk.str)
+(in-package #:pkgetset.sycamore/pk.str)
 
 (-> compare-by-string (string string) (member -1 1 0))
 (defun compare-by-string (a b)

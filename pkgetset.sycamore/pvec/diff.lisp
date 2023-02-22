@@ -1,7 +1,7 @@
-(uiop:define-package #:pkgetset/containers/pvec/diff
+(uiop:define-package #:pkgetset.sycamore/pvec/diff
   (:use)
-  (:mix #:pkgetset/containers/pvec/pvec
-        #:pkgetset/containers/pvec/raw-data
+  (:mix #:pkgetset.sycamore/pvec/pvec
+        #:pkgetset.sycamore/pvec/raw-data
         #:pkgetset/interfaces
         #:cl)
   (:import-from #:pkgetset/interfaces/diff)
@@ -16,7 +16,7 @@
                 #:fold-tree-set)
   (:export)
   (:documentation "Diff interface implementation for pvec"))
-(cl:in-package #:pkgetset/containers/pvec/diff)
+(cl:in-package #:pkgetset.sycamore/pvec/diff)
 
 (defmethod diff-getk ((keyed pvec) internal-key &optional default)
   (let ((found (get-raw-by-raw-id keyed internal-key 'not-found)))

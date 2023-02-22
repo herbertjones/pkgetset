@@ -1,9 +1,9 @@
-(uiop:define-package #:pkgetset/containers/pvec
+(uiop:define-package #:pkgetset.sycamore/pvec
   (:mix #:cl
-        #:pkgetset/containers/pvec/get
-        #:pkgetset/containers/pvec/set
-        #:pkgetset/containers/pvec/pvec
-        #:pkgetset/containers/pvec/diff)
+        #:pkgetset.sycamore/pvec/get
+        #:pkgetset.sycamore/pvec/set
+        #:pkgetset.sycamore/pvec/pvec
+        #:pkgetset.sycamore/pvec/diff)
   (:export #:pvec
            #:empty-pvec
            #:pvec-push
@@ -23,4 +23,4 @@ values.
 
 (:insert pos)
   Insert value at position."))
-(cl:in-package #:pkgetset/containers/pvec)
+(cl:in-package #:pkgetset.sycamore/pvec)

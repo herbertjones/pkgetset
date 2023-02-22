@@ -1,9 +1,9 @@
-(uiop:define-package #:pkgetset/containers/pvec/pvec
+(uiop:define-package #:pkgetset.sycamore/pvec/pvec
   (:use)
   (:mix #:pkgetset/interfaces
         #:pkgetset/get-by-key
-        #:pkgetset/containers/pvec/raw-data
-        #:pkgetset/containers/pvec/compare
+        #:pkgetset.sycamore/pvec/raw-data
+        #:pkgetset.sycamore/pvec/compare
         #:cl)
   (:import-from #:serapeum
                 #:->
@@ -40,7 +40,7 @@
            #:get-raw-by-position
            #:pvec-insert-at-pos)
   (:documentation "struct for pvec"))
-(cl:in-package #:pkgetset/containers/pvec/pvec)
+(cl:in-package #:pkgetset.sycamore/pvec/pvec)
 
 (declaim (type tree-set *empty-tree*))
 (defparameter *empty-tree*

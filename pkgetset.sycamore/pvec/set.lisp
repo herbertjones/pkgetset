@@ -1,8 +1,8 @@
-(uiop:define-package #:pkgetset/containers/pvec/set
+(uiop:define-package #:pkgetset.sycamore/pvec/set
   (:use)
   (:mix #:pkgetset/interfaces
-        #:pkgetset/containers/pvec/raw-data
-        #:pkgetset/containers/pvec/pvec
+        #:pkgetset.sycamore/pvec/raw-data
+        #:pkgetset.sycamore/pvec/pvec
         #:cl)
   (:import-from #:sycamore
                 #:tree-set
@@ -10,7 +10,7 @@
                 #:tree-set-replace
                 #:tree-set-remove)
   (:documentation "Implementation of pkgetset/interface/set-by-key generics for pvec"))
-(cl:in-package #:pkgetset/containers/pvec/set)
+(cl:in-package #:pkgetset.sycamore/pvec/set)
 
 (defmethod settable-keyed-p ((pv pvec))
   t)

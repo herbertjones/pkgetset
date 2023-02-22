@@ -3,6 +3,7 @@
   (:use)
   (:mix #:parachute
         #:pkgetset
+        #:pkgetset.sycamore
         #:pkgetset.shasht
         #:shasht
         #:arrow-macros

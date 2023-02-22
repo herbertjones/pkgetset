@@ -10,7 +10,7 @@
 ** keyed-keys->vector                                              :optional:
 ** keyed-values->vector                                            :optional:
 * setk
-** settable-keyed-p                                                 :required:
+** settable-keyed-p                                                :required:
 ** settable-keyed->empty                                           :required:
 ** setk                                                            :required:
 ** remk                                                            :required:

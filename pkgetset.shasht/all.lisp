@@ -1,8 +1,9 @@
 (uiop:define-package #:pkgetset.shasht
   (:nicknames #:pkgetset.shasht/all)
   (:use #:cl
-        #:pkgetset)
-  (:import-from #:pkgetset/containers/sycamore-tree-map
+        #:pkgetset
+        #:pkgetset.sycamore)
+  (:import-from #:pkgetset.sycamore/sycamore-tree-map
                 #:wrapped-tree-map-inner)
   (:import-from #:shasht
                 #:read-json*

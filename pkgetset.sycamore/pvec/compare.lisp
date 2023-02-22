@@ -1,13 +1,13 @@
-(uiop:define-package #:pkgetset/containers/pvec/compare
+(uiop:define-package #:pkgetset.sycamore/pvec/compare
   (:use)
   (:import-from #:serapeum
                 #:->)
-  (:mix #:pkgetset/containers/pvec/raw-data
+  (:mix #:pkgetset.sycamore/pvec/raw-data
         #:cl)
   (:export
    #:compare-by-number-list-id)
   (:documentation "Compare operator for internal pvec usage"))
-(cl:in-package #:pkgetset/containers/pvec/compare)
+(cl:in-package #:pkgetset.sycamore/pvec/compare)
 
 (-> compare-by-number-list (list list) (member -1 1 0))
 (defun compare-by-number-list (a b)

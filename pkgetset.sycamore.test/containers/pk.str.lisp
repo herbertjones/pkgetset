@@ -1,7 +1,10 @@
-(uiop:define-package #:pkgetset.test/containers/pk.str
+(uiop:define-package #:pkgetset.sycamore.test/containers/pk.str
   (:use)
-  (:mix #:parachute #:pkgetset #:cl))
-(cl:in-package #:pkgetset.test/containers/pk.str)
+  (:mix #:parachute
+        #:pkgetset
+        #:pkgetset.sycamore
+        #:cl))
+(cl:in-package #:pkgetset.sycamore.test/containers/pk.str)
 
 (defun test-pk.str-1 ()
   (pk.str "strings" (pk.str "a" :a

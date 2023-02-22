@@ -4,11 +4,11 @@
 (cl:in-package #:pkgetset.test/get-by-key)
 
 (defun test-obj-1 ()
-  (pk.sym :a (pk.sym :aa :aa-value
-                     :ab :ab-value)
-          :b 1
-          :n (pk.sym :n1 10
-                     :n2 200)))
+  (pdict :a (pdict :aa :aa-value
+                   :ab :ab-value)
+         :b 1
+         :n (pdict :n1 10
+                   :n2 200)))
 
 (define-test "getk?"
   (true (getk? (test-obj-1) :a))

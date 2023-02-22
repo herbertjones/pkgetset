@@ -1,8 +1,8 @@
-(uiop:define-package #:pkgetset/containers/pk.gen
+(uiop:define-package #:pkgetset.sycamore/pk.gen
   (:use #:cl
         #:pkgetset/interfaces
         #:pkgetset/get-by-key
-        #:pkgetset/containers/sycamore-tree-map)
+        #:pkgetset.sycamore/sycamore-tree-map)
   (:import-from #:sycamore
                 #:tree-map
                 #:tree-map-count
@@ -19,10 +19,9 @@
   (:export
    #:alist->pk.gen
    #:pk.gen
-   #:pk.gen
    #:empty-pk.gen)
   (:documentation "pk.gen generic keyed persistent structure with getk and setk implementation"))
-(in-package #:pkgetset/containers/pk.gen)
+(in-package #:pkgetset.sycamore/pk.gen)
 
 (-> generic-compare-type-num (t) (member 0 1 2 3))
 (defun generic-compare-type-num (value)

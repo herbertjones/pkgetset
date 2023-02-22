@@ -1,7 +1,10 @@
-(uiop:define-package #:pkgetset.test/containers/pvec
+(uiop:define-package #:pkgetset.sycamore.test/containers/pvec
   (:use)
-  (:mix #:parachute #:pkgetset #:cl))
-(cl:in-package #:pkgetset.test/containers/pvec)
+  (:mix #:parachute
+        #:pkgetset
+        #:pkgetset.sycamore
+        #:cl))
+(cl:in-package #:pkgetset.sycamore.test/containers/pvec)
 
 (defun test-pvec-1 ()
   (pvec :a :b :c))

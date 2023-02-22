@@ -1,6 +1,5 @@
 (uiop:define-package #:pkgetset/set-by-key
   (:use #:cl
-        #:pkgetset/containers/pk.gen
         #:pkgetset/interfaces
         #:pkgetset/get-by-key)
   (:import-from #:serapeum

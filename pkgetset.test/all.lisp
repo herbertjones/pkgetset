@@ -5,8 +5,7 @@
   (:import-from #:pkgetset.test/containers)
   (:import-from #:pkgetset.test/diff)
   (:import-from #:pkgetset.test/get-by-key)
-  (:import-from #:pkgetset.test/set-by-key)
-  (:export))
+  (:import-from #:pkgetset.test/set-by-key))
 (cl:in-package #:pkgetset.test)
 
 (define-test top-level
