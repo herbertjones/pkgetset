@@ -3,6 +3,7 @@
   (:use-reexport #:pkgetset/containers/array
                  #:pkgetset/containers/cons
                  #:pkgetset/containers/hash-table
+                 #:pkgetset/containers/mutable-dict
                  #:pkgetset/containers/pdict
                  #:pkgetset/containers/vector)
   (:documentation "Containers that implement interfaces from this library."))

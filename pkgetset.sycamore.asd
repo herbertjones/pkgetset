@@ -11,6 +11,7 @@
                "trivial-do"
                "pkgetset"
 
-               "pkgetset.sycamore/all"))
+               "pkgetset.sycamore/all")
+  :in-order-to ((test-op (test-op :pkgetset.sycamore.test))))
 
 (register-system-packages "alexandria" '(:alexandria-2))

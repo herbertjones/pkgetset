@@ -6,7 +6,8 @@
   (:import-from #:alexandria-2
                 #:copy-hash-table)
   (:export
-   #:pdict)
+   #:pdict
+   #:hash-table->pdict)
   (:documentation "Persistent hash table"))
 (cl:in-package #:pkgetset/containers/pdict)
 
@@ -34,6 +35,7 @@
   (make-pdict :inner *empty-inner*))
 
 (defun hash-table->pdict (ht)
+  "Create a pdict from a hash table."
   (make-pdict :inner ht))
 
 (defmethod getk ((keyed pdict) key &optional default)

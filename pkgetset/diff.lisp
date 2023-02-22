@@ -1,6 +1,7 @@
 (uiop:define-package #:pkgetset/diff
   (:use #:cl
         #:pkgetset/containers/pdict
+        #:pkgetset/containers/mutable-dict
         #:pkgetset/interfaces
         #:pkgetset/get-by-key)
   (:import-from #:serapeum
@@ -11,9 +12,6 @@
            #:apply-diff
            #:keyeds-equal-p))
 (in-package #:pkgetset/diff)
-
-(declaim (type pdict *empty-object*))
-(defparameter *empty-object* (pdict))
 
 (defun diff-getk? (keyed key)
   "(package internal)  Version of getk? for diff-getk."
@@ -40,8 +38,8 @@ Example:
                         ,@body)
                       ,(getf arg-plist :initial))))
 
-(-> reduce-keys-union ((-> (pdict t) pdict)
-                       pdict
+(-> reduce-keys-union ((-> (mutable-dict t) mutable-dict)
+                       mutable-dict
                        keyed
                        keyed)
   t)
@@ -88,30 +86,41 @@ Example:
 Descends through nested keyed containers, looking for changes.  Nodes of
 returned keyed object are the changes or new entries.  Use diffs-in-conflict-p
 to determine if two diffs have conflicting changes."
+  (let ((result (diff-by-keys-internal a b :test test)))
+    (if result
+        (mutable-dict-finalize result)
+        nil)))
+
+(defun diff-by-keys-internal (a b &key (test #'equal) empty-result)
   (let ((a-has-keys (and (settable-keyed-p a) (plusp (lengthk a))))
         (b-has-keys (and (settable-keyed-p b) (plusp (lengthk b)))))
     (cond ((and a-has-keys b-has-keys)
            ;; Both have keys, must recurse
            (flet ((reducer (acc key)
-                    (let ((res (diff-by-keys (diff-getk a key)
-                                             (diff-getk b key)
-                                             :test test)))
-                      (if (and res (not (eq res *empty-object*)))
+                    (let ((res (diff-by-keys-internal (diff-getk a key)
+                                                      (diff-getk b key)
+                                                      :test test
+                                                      :empty-result 'no-result)))
+                      (if (and res (not (eq res 'no-result)))
                           (diff-setk acc key res)
                           acc))))
-             (let* ((obj (reduce-keys-union #'reducer *empty-object* a b)))
-               (if (eq *empty-object* obj) nil obj))))
+             (let* ((md (mutable-dict))
+                    (obj (reduce-keys-union #'reducer md a b)))
+               (if (and (eq md obj) (zerop (lengthk md)))
+                   empty-result
+                   obj))))
           ;; If no b-keys, then b
           (a-has-keys b)
           ;; If no a-keys, then b is new or replaced a
           (b-has-keys b)
           ;; Neither have keys
           ((funcall test a b)
-           nil)
+           empty-result)
           (t
            b))))
 
-(defun diff-by-keys-find-deleted (a b &key (test #'equal) (deleted-value :deleted))
+(defun diff-by-keys-find-deleted (a b &key (test #'equal)
+                                        (deleted-value :deleted))
   "Diff two keyed objects, finding new, changed and deleted entries.
 
 Nodes that contain :DELETED (or DELETED-VALUE if overridden) were removed from
@@ -128,20 +137,34 @@ Example:
 Descends through nested keyed containers, looking for changes.  Nodes of
 returned keyed object are the changes or new entries.  Use diffs-in-conflict-p
 to determine if two diffs have conflicting changes."
+  (let ((result (diff-by-keys-find-deleted-internal a b
+                                                    :test test
+                                                    :deleted-value deleted-value)))
+    (if result
+        (mutable-dict-finalize result)
+        nil)))
+
+(defun diff-by-keys-find-deleted-internal (a b &key (test #'equal)
+                                                 empty-result
+                                                 (deleted-value :deleted))
   (let ((a-has-keys (and (settable-keyed-p a) (plusp (lengthk a))))
         (b-has-keys (and (settable-keyed-p b) (plusp (lengthk b)))))
     (cond ((and a-has-keys b-has-keys)
            ;; Both have keys, must recurse
            (flet ((reducer (acc key)
-                    (let ((res (diff-by-keys-find-deleted (diff-getk a key)
-                                                          (diff-getk b key)
-                                                          :test test
-                                                          :deleted-value deleted-value)))
-                      (if (and res (not (eq res *empty-object*)))
+                    (let ((res (diff-by-keys-find-deleted-internal (diff-getk a key)
+                                                                   (diff-getk b key)
+                                                                   :test test
+                                                                   :empty-result 'no-result
+                                                                   :deleted-value deleted-value)))
+                      (if (and res (not (eq res 'no-result)))
                           (diff-setk acc key res)
                           acc))))
-             (let* ((obj (reduce-keys-union #'reducer *empty-object* a b)))
-               (if (eq *empty-object* obj) nil obj))))
+             (let* ((md (mutable-dict))
+                    (obj (reduce-keys-union #'reducer md a b)))
+               (if (and (eq md obj) (zerop (lengthk md)))
+                   empty-result
+                   obj))))
           ;; If no b-keys, then b or :deleted
           (a-has-keys (or b deleted-value))
           ;; If no a-keys, then b is new or replaced a
@@ -149,9 +172,9 @@ to determine if two diffs have conflicting changes."
           ;; Neither have keys
           ((and (settable-keyed-p a) (settable-keyed-p b))
            ;; but they are both keyed objects, and both are empty
-           nil)
+           empty-result)
           ((funcall test a b)
-           nil)
+           empty-result)
           (t (or b deleted-value)))))
 
 (defun diffs-in-conflict-p (diff-a diff-b &key (test #'equal))
