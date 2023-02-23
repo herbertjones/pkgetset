@@ -44,10 +44,10 @@ Or something more complicated.
 
 * Functions
 The base functions either get, set of modify.  They are named similarly with some consistency.  There are a few modifiers that change the base functions "getk", "setk" and "modk" in consistent ways.
-- "*" :: Takes a path of keys instead of a single key
-- "?" :: Tests if key exists
-- "!" :: Update in place.  Does not change original persistent container.
-- "e" :: Error when key doesn't exist.
+- e :: (prefix) Error when key doesn't exist.
+- ? :: (suffix) Tests if key exists
+- * :: (suffix) Takes a path of keys instead of a single key
+- ! :: (suffix) Update in place.  Does not change original persistent container.
 
 ** Getters
 - getk :: Get a value from a key (or provide optional default)
