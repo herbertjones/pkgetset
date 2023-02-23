@@ -42,19 +42,47 @@ Or something more complicated.
 #+end_src
 
 
-* Naming scheme
-
-Most functions are named off the base functions:
-- getk
-- setk
-- modk
-
-The modifiers are:
+* Functions
+The base functions either get, set of modify.  They are named similarly with some consistency.  There are a few modifiers that change the base functions "getk", "setk" and "modk" in consistent ways.
 - "*" :: Takes a path of keys instead of a single key
 - "?" :: Tests if key exists
 - "!" :: Update in place.  Does not change original persistent container.
 - "e" :: Error when key doesn't exist.
 
+** Getters
+- getk :: Get a value from a key (or provide optional default)
+- getk? :: Does container have this key?
+- egetk :: Get a value from a key or signal an error
+- getk* :: Get a value by list of keys (a path)
+- egetk* :: Get a value from a list of keys or signal an error
+
+** Setters
+- setk :: Set a value by key
+- setk! :: Set a value by key in place (doesn't modify the original container)
+- setk* :: Set a value by path
+- setk*! :: Set a value by path in place (doesn't modify the original container)
+
+** Modifiers
+- modk :: Modify key by function
+- modk* :: Modify path by function
+- emodk :: Modify key by function.  Error if key doesn't exist.
+- emodk* :: Modify path by function.  Error if path doesn't exist.
+- modk! :: Modify key by function and update symbol in place (doesn't modify original container)
+- modk*! :: Modify path by function and update symbol in place (doesn't modify original container)
+- emodk*! :: Modify path by function in place (...).  Error if path doesn't exist.
+
+** Removers
+- remk :: Remove key and return new container
+- remk! :: Remove key and replace symbol
+- remk* :: Remove path.  Doesn't remove empty containers.
+- remk*! :: Remove path.  Doesn't remove empty containers.  In place.
+
+** Special
+- keyed-merge :: Combine containers by key and return new container
+- with-keyed :: Bind symbols to keys
+- ewith-keyed :: Bind symbols to keys and error if any missing
+- fold-keyed :: Iterate over keys and values with function
+- over-keyed :: Iterate over keys and values like dolist where bound symbols are identified by keywords :key, :value, :accumulator and :initial
 
 * Container classes
 ** Built-in
