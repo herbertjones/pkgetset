@@ -93,9 +93,9 @@ The containers are:
 
 ** pkgetset.sycamore
 The containers are:
-- pk.gen :: Keys can be symbols, strings or numbers.  Useful when converting from JSON.
-- pk.sym :: Keys are be symbols.
-- pk.str :: Keys are be strings.
+- pk.gen :: Keys may be symbols, strings or numbers.  Useful when converting from JSON.
+- pk.sym :: Keys may only be symbols.
+- pk.str :: Keys may only be strings.
 - pvec :: Persistent vector.  Setk functions also allow :start :end and (:insert n) as keys.
 
 
