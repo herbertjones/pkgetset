@@ -44,8 +44,8 @@ Used to convert data from sources like converted JSON and map it to settable-key
                              data-to-convert)
                     pd))
       (vector (let ((pd (funcall empty-persistent-unkeyed)))
-                (loop for raw-val across data-to-convert
-                      do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
+                (loop :for raw-val :across data-to-convert
+                      :do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
                 pd))
       (keyed data-to-convert)
       (t (error "Unexpected data: ~S of type ~A"
@@ -65,6 +65,7 @@ Used to convert data from sources like converted JSON and map it to settable-key
                               empty-persistent-unkeyed unkeyed-appender
                               list-are-pairs)))
     (typecase data-to-convert
+      (null nil)
       (hash-table (let ((pd (funcall empty-persistent-keyed)))
                     (maphash #'(lambda (key raw-val)
                                  (setf pd (funcall key-value-adder pd key (recurse raw-val))))
@@ -73,23 +74,22 @@ Used to convert data from sources like converted JSON and map it to settable-key
       (string data-to-convert)
       (cons (if list-are-pairs
                 (let ((pd (funcall empty-persistent-keyed)))
-                  (loop for data = data-to-convert then (cddr data)
-                        while data
-                        for key = (car data)
-                        for raw-val = (cadr data)
-                        do (setf pd (funcall key-value-adder pd key (recurse raw-val))))
+                  (loop :for data := data-to-convert :then (cddr data)
+                        :while data
+                        :for key := (car data)
+                        :for raw-val := (cadr data)
+                        :do (setf pd (funcall key-value-adder pd key (recurse raw-val))))
                   pd)
                 (let ((pd (funcall empty-persistent-unkeyed)))
-                  (loop for raw-val in data-to-convert
-                        do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
+                  (loop :for raw-val :in data-to-convert
+                        :do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
                   pd)))
       (vector (let ((pd (funcall empty-persistent-unkeyed)))
-                (loop for raw-val across data-to-convert
-                      do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
+                (loop :for raw-val :across data-to-convert
+                      :do (setf pd (funcall unkeyed-appender pd (recurse raw-val))))
                 pd))
       (number data-to-convert)
       (keyed data-to-convert)
       (t (error "Unexpected data: ~S of type ~A"
                 data-to-convert
                 (type-of data-to-convert))))))
-

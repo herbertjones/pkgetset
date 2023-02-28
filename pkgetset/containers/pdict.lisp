@@ -7,7 +7,8 @@
                 #:copy-hash-table)
   (:export
    #:pdict
-   #:hash-table->pdict)
+   #:hash-table->pdict
+   #:empty-pdict)
   (:documentation "Persistent hash table"))
 (cl:in-package #:pkgetset/containers/pdict)
 
@@ -33,6 +34,10 @@
 (declaim (type pdict *empty-object*))
 (defparameter *empty-object*
   (make-pdict :inner *empty-inner*))
+
+(defun empty-pdict ()
+  "Provide the default empty pdict object."
+  *empty-object*)
 
 (defun hash-table->pdict (ht)
   "Create a pdict from a hash table."
