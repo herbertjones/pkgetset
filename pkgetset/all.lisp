@@ -7,6 +7,5 @@
    #:pkgetset/containers
    #:pkgetset/set-by-key
    #:pkgetset/build-keyed
-   #:pkgetset/diff
-   #:pkgetset/util))
+   #:pkgetset/diff))
 (in-package #:pkgetset/all)
