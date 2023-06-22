@@ -9,7 +9,7 @@
   (:import-from #:pkgetset.test/containers/vector))
 (cl:in-package #:pkgetset.test/containers)
 
-(define-test "getk ease of use"
+(define-test "all containers"
   (test :pkgetset.test/containers/array)
   (test :pkgetset.test/containers/cons)
   (test :pkgetset.test/containers/hash-table)
