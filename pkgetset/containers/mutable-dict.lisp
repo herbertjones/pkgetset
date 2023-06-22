@@ -8,7 +8,8 @@
                 #:copy-hash-table)
   (:export
    #:mutable-dict
-   #:mutable-dict-finalize)
+   #:mutable-dict-finalize
+   #:mutable-dict-finalize-recursive)
   (:documentation "Not so persistent hash table.
 
 To be used as a mutable hash table that works with setk, but can be finalized
@@ -34,6 +35,17 @@ into a plist once mutation no longer needed."))
   "Convert a mutable-dict into a pdict."
   (prog1 (hash-table->pdict (mutable-dict-inner md))
     (setf (mutable-dict-inner md) nil)))
+
+(defun mutable-dict-finalize-recursive (md)
+  "Convert a tree of mutable-dict into a pdicts."
+  (let ((inner (mutable-dict-inner md)))
+    (maphash (lambda (key val)
+               (when (typep val 'mutable-dict)
+                 (setf (gethash key inner)
+                       (mutable-dict-finalize-recursive val))))
+             inner)
+    (setf (mutable-dict-inner md) nil)
+    (hash-table->pdict inner)))
 
 (defun hash-table->mutable-dict (ht)
   (make-mutable-dict :inner ht))
@@ -65,11 +77,11 @@ into a plist once mutation no longer needed."))
 
 (defmethod keyed-values->list ((keyed mutable-dict))
   (let ((values (list)))
-      (maphash #'(lambda (key value)
-                   (declare (ignore key))
-                   (push value values))
-               (mutable-dict-inner keyed))
-      (nreverse values)))
+    (maphash #'(lambda (key value)
+                (declare (ignore key))
+                (push value values))
+             (mutable-dict-inner keyed))
+    (nreverse values)))
 
 (defmethod settable-keyed-p ((settable mutable-dict))
   t)

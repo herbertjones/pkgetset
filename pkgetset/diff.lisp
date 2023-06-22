@@ -88,7 +88,7 @@ returned keyed object are the changes or new entries.  Use diffs-in-conflict-p
 to determine if two diffs have conflicting changes."
   (let ((result (diff-by-keys-internal a b :test test)))
     (if result
-        (mutable-dict-finalize result)
+        (mutable-dict-finalize-recursive result)
         nil)))
 
 (defun diff-by-keys-internal (a b &key (test #'equal) empty-result)
@@ -141,7 +141,7 @@ to determine if two diffs have conflicting changes."
                                                     :test test
                                                     :deleted-value deleted-value)))
     (if result
-        (mutable-dict-finalize result)
+        (mutable-dict-finalize-recursive result)
         nil)))
 
 (defun diff-by-keys-find-deleted-internal (a b &key (test #'equal)
