@@ -1,5 +1,7 @@
 (defsystem "pkgetset.sycamore"
-  :name "Nice name"
+  :description "Sycamore persistent backed containers for pkgetset"
+  :author "Herbert Jones"
+  :license "MIT"
   :version "0.0.1"
 
   :class :package-inferred-system

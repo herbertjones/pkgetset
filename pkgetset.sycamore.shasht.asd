@@ -1,5 +1,7 @@
 (defsystem "pkgetset.sycamore.shasht"
-  :name "JSON functionality for pkgetset using Shasht"
+  :description "JSON functionality for pkgetset using Shasht"
+  :author "Herbert Jones"
+  :license "MIT"
   :version "0.0.1"
 
   :class :package-inferred-system

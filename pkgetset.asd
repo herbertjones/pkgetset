@@ -1,5 +1,7 @@
 (defsystem "pkgetset"
-  :name "Data oriented programming system"
+  :description "A persistent keyed container convenience library"
+  :author "Herbert Jones"
+  :license "MIT"
   :version "0.0.1"
 
   :class :package-inferred-system

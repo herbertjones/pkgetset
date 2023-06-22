@@ -1,5 +1,7 @@
 (defsystem "pkgetset.test"
   :description "Tests for pkgetset"
+  :author "Herbert Jones"
+  :license "MIT"
   :version "0.0.1"
 
   :class :package-inferred-system

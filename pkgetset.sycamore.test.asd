@@ -1,5 +1,7 @@
 (defsystem "pkgetset.sycamore.test"
   :description "Tests for pkgetset.sycamore"
+  :author "Herbert Jones"
+  :license "MIT"
   :version "0.0.1"
 
   :class :package-inferred-system
